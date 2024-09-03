@@ -12,9 +12,10 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
+
     @Bean
     @Order(1)
-    public SecurityWebFilterChain actuatorSecurityFilterChain(ServerHttpSecurity http) {
+    public SecurityWebFilterChain actuatorSecurityFilterChain(ServerHttpSecurity http) throws Exception {
         http.securityMatcher(EndpointRequest.toAnyEndpoint())
                 .authorizeExchange(authorize -> authorize.anyExchange().permitAll());
 
@@ -30,4 +31,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }
